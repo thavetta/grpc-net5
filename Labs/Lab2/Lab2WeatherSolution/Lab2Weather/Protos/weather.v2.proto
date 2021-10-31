@@ -50,6 +50,6 @@ message AirportRequest {
 
 // The response message containing the greetings.
 message WeatherReply {
-  WeatherInfo aktual = 1;
+  WeatherInfo actual = 1;
   map<int32,WeatherInfo> forecast = 2;
 }

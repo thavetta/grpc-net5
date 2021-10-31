@@ -18,27 +18,35 @@ namespace Lab2Weather.Services
         public override Task<WeatherReply> GetWeather(AirportRequest request, ServerCallContext context)
         {
             _logger.LogInformation("resim GetWeather " + this.GetHashCode());
-            var aktual = new WeatherInfo()
-            {
-                Pressure = 1020,
-                Temperature = 21,
-                WindSpeed = 5,
-                Code = WindDirection.E,
-                Status = WeatherStatus.Clear
-            };
-            aktual.Warnning.Add("First info");
-            aktual.Warnning.Add("Second info");
+            WeatherInfo aktual = GetWeatherInfo();
 
             var forecast = new Dictionary<int, WeatherInfo>();
-            forecast[1] = aktual;
-            forecast[2] = aktual;
-            forecast[3] = aktual;
+            forecast[1] = GetWeatherInfo();
+            forecast[2] = GetWeatherInfo();
+            forecast[3] = GetWeatherInfo();
 
             var reply = new WeatherReply();
-            reply.Aktual = aktual;
+            reply.Actual = aktual;
             reply.Forecast.Add(forecast);
 
             return Task.FromResult(reply);
+        }
+
+        private static Random generator = new Random();
+
+        private static WeatherInfo GetWeatherInfo()
+        {
+            var weather = new WeatherInfo()
+            {
+                Pressure = generator.Next(990, 1025),
+                Temperature = generator.Next(0, 30),
+                WindSpeed = generator.Next(0, 15),
+                Code = (WindDirection) generator.Next(0,8),
+                Status = (WeatherStatus) generator.Next(0,5)
+            };
+            weather.Warnning.Add("First info " + DateTime.Now.Ticks);
+            weather.Warnning.Add("Second info " + +DateTime.Now.Ticks);
+            return weather;
         }
     }
 }
