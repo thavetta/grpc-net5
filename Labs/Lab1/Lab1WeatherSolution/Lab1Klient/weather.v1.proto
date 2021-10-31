@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "Lab1Weather";
+
+package weather.v1;
+
+// The weather service definition.
+service AirportWeather {
+  
+  rpc GetWeather (WeatherRequest) returns (WeatherInfo);
+}
+
+// The request message
+message WeatherRequest {
+  string airport_code = 1;
+}
+
+// The response message
+message WeatherInfo {
+
+	int32 temperature = 1;
+	int32 pressure = 2;
+	int32 wind_degree = 3;
+	int32 wind_speed = 4;
+	string warnning = 5;
+}
