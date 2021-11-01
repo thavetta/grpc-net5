@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option csharp_namespace = "Lab3Weather";
+
+package weather.v2;
+
+enum WindDirection {
+	WIND_DIRECTION_NONE = 0;
+	WIND_DIRECTION_N = 1;
+	WIND_DIRECTION_NE = 2;
+	WIND_DIRECTION_E = 3;
+	WIND_DIRECTION_SE = 4;
+	WIND_DIRECTION_S = 5;
+	WIND_DIRECTION_SW = 6;
+	WIND_DIRECTION_W = 7;
+	WIND_DIRECTION_NW = 8;
+	WIND_DIRECTION_VAR = 9;
+}
+
+enum WeatherStatus {
+	WEATHER_STATUS_NONE = 0;
+	WEATHER_STATUS_CLEAR = 1;
+	WEATHER_STATUS_CLOUDS = 2;
+	WEATHER_STATUS_RAIN = 3;
+	WEATHER_STATUS_SNOW = 4;
+	WEATHER_STATUS_MIST = 5;
+}
+
+// The greeting service definition.
+service AirportWeather {
+  // Sends a greeting
+  rpc GetWeather (AirportRequest) returns (WeatherReply);
+}
+
+message WeatherInfo {
+	int32 temperature = 1;
+	int32 pressure = 2;
+	oneof wind_direction {
+		int32 degree = 3;
+		WindDirection code = 4;
+	}
+	int32 wind_speed = 5;
+	WeatherStatus status = 6;
+	repeated string warnning = 7;
+}
+// The request message containing the user's name.
+message AirportRequest {
+  string airport_code = 1;
+}
+
+// The response message containing the greetings.
+message WeatherReply {
+  WeatherInfo actual = 1;
+  map<int32,WeatherInfo> forecast = 2;
+}

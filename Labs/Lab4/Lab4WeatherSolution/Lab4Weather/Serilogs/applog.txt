@@ -1,0 +1,118 @@
+2021-10-31 17:10:41.489 +01:00 [INF] Now listening on: http://localhost:5000
+2021-10-31 17:10:41.574 +01:00 [INF] Now listening on: https://localhost:5001
+2021-10-31 17:10:41.576 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-10-31 17:10:41.580 +01:00 [INF] Hosting environment: Development
+2021-10-31 17:10:41.583 +01:00 [INF] Content root path: C:\zdroje\grpc-net5\Labs\Lab4\Lab4WeatherSolution\Lab4Weather
+2021-10-31 17:10:55.648 +01:00 [INF] Request starting HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/GetWeather application/grpc -
+2021-10-31 17:10:55.733 +01:00 [INF] Executing endpoint 'gRPC - /weather.v3.AirportWeather/GetWeather'
+2021-10-31 17:10:55.842 +01:00 [INF] Konstruktor RandomIntLite
+2021-10-31 17:10:55.850 +01:00 [INF] Konstruktor service objektu 52116595
+2021-10-31 17:10:55.855 +01:00 [INF] resim GetWeather 52116595
+2021-10-31 17:10:55.860 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:55.861 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:55.864 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:55.866 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:55.867 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:55.869 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:55.871 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:55.872 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:55.873 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:55.874 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:55.876 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:55.877 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:55.881 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:55.882 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:55.883 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:55.884 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:55.886 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:55.887 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:55.889 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:55.890 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:55.946 +01:00 [INF] Executed endpoint 'gRPC - /weather.v3.AirportWeather/GetWeather'
+2021-10-31 17:10:55.955 +01:00 [INF] Request finished HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/GetWeather application/grpc - - 200 - application/grpc 312.6483ms
+2021-10-31 17:10:56.138 +01:00 [INF] Request starting HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/GetWeather application/grpc -
+2021-10-31 17:10:56.144 +01:00 [INF] Executing endpoint 'gRPC - /weather.v3.AirportWeather/GetWeather'
+2021-10-31 17:10:56.154 +01:00 [INF] Konstruktor RandomIntLite
+2021-10-31 17:10:56.155 +01:00 [INF] Konstruktor service objektu 33711845
+2021-10-31 17:10:56.159 +01:00 [INF] resim GetWeather 33711845
+2021-10-31 17:10:56.161 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:56.171 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:56.175 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:56.179 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:56.181 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:56.188 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:56.190 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:56.191 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:56.198 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:56.200 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:56.212 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:56.215 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:56.221 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:56.230 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:56.234 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:56.238 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:56.244 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:56.248 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:56.258 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:56.260 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:56.266 +01:00 [INF] Executed endpoint 'gRPC - /weather.v3.AirportWeather/GetWeather'
+2021-10-31 17:10:56.269 +01:00 [INF] Request finished HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/GetWeather application/grpc - - 200 - application/grpc 130.6592ms
+2021-10-31 17:10:56.399 +01:00 [INF] Request starting HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/GetWeatherStream application/grpc -
+2021-10-31 17:10:56.406 +01:00 [INF] Executing endpoint 'gRPC - /weather.v3.AirportWeather/GetWeatherStream'
+2021-10-31 17:10:56.416 +01:00 [INF] Konstruktor RandomIntLite
+2021-10-31 17:10:56.421 +01:00 [INF] Konstruktor service objektu 43994237
+2021-10-31 17:10:56.432 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:10:56.434 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:10:56.444 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:10:56.455 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:10:56.472 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:10:56.480 +01:00 [INF] Posilam nove pocasi
+2021-10-31 17:11:06.490 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:11:06.491 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:11:06.493 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:11:06.494 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:11:06.495 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:11:06.496 +01:00 [INF] Posilam nove pocasi
+2021-10-31 17:11:16.520 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:11:16.561 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:11:16.565 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:11:16.611 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:11:16.617 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:11:16.620 +01:00 [INF] Posilam nove pocasi
+2021-10-31 17:11:26.654 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:11:26.655 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:11:26.657 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:11:26.659 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:11:26.662 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:11:26.664 +01:00 [INF] Posilam nove pocasi
+2021-10-31 17:11:36.676 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:11:36.677 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:11:36.679 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:11:36.680 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:11:36.682 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:11:36.683 +01:00 [INF] Posilam nove pocasi
+2021-10-31 17:11:46.702 +01:00 [INF] Generuji 990 az 1025
+2021-10-31 17:11:46.708 +01:00 [INF] Generuji 0 az 30
+2021-10-31 17:11:46.710 +01:00 [INF] Generuji 0 az 15
+2021-10-31 17:11:46.711 +01:00 [INF] Generuji 0 az 8
+2021-10-31 17:11:46.713 +01:00 [INF] Generuji 0 az 5
+2021-10-31 17:11:46.714 +01:00 [INF] Posilam nove pocasi
+2021-10-31 17:11:56.744 +01:00 [INF] Request starting HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/Sum application/grpc -
+2021-10-31 17:11:56.757 +01:00 [INF] Executed endpoint 'gRPC - /weather.v3.AirportWeather/GetWeatherStream'
+2021-10-31 17:11:56.757 +01:00 [INF] Executing endpoint 'gRPC - /weather.v3.AirportWeather/Sum'
+2021-10-31 17:11:56.761 +01:00 [INF] Request finished HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/GetWeatherStream application/grpc - - 200 - application/grpc 60362.3407ms
+2021-10-31 17:11:56.768 +01:00 [INF] Konstruktor RandomIntLite
+2021-10-31 17:11:56.769 +01:00 [INF] Konstruktor service objektu 61325552
+2021-10-31 17:11:56.790 +01:00 [INF] Pridavam 56
+2021-10-31 17:11:58.252 +01:00 [INF] Pridavam 78
+2021-10-31 17:11:59.747 +01:00 [INF] Pridavam 86
+2021-10-31 17:12:01.264 +01:00 [INF] Pridavam 9
+2021-10-31 17:12:02.794 +01:00 [INF] Pridavam 98
+2021-10-31 17:12:04.299 +01:00 [INF] Pridavam 14
+2021-10-31 17:12:05.821 +01:00 [INF] Pridavam 70
+2021-10-31 17:12:07.327 +01:00 [INF] Pridavam 29
+2021-10-31 17:12:08.844 +01:00 [INF] Pridavam 44
+2021-10-31 17:12:10.356 +01:00 [INF] Pridavam 83
+2021-10-31 17:12:11.869 +01:00 [INF] Executed endpoint 'gRPC - /weather.v3.AirportWeather/Sum'
+2021-10-31 17:12:11.871 +01:00 [INF] Request finished HTTP/2 POST https://localhost:5001/weather.v3.AirportWeather/Sum application/grpc - - 200 - application/grpc 15126.7924ms
+2021-10-31 17:12:34.230 +01:00 [INF] Application is shutting down...
