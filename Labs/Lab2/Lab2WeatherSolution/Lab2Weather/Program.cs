@@ -1,27 +1,19 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using Lab2Weather;
+using Lab2Weather.Services;
 
-namespace Lab2Weather
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddGrpc().AddServiceOptions<AirportWeatherService>(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    options.MaxSendMessageSize = 2 * 1024 * 1024;
+    options.MaxReceiveMessageSize = 5 * 1024 * 1024;
+});
 
-        // Additional configuration is required to successfully run gRPC on macOS.
-        // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+var app = builder.Build();
+string error = "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909";
+
+app.MapGrpcService<AirportWeatherService>();
+app.MapGet("/", async context => { await context.Response.WriteAsync(error); });
+
+app.Run();
+
+

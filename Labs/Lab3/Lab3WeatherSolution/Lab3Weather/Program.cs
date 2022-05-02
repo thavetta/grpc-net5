@@ -1,3 +1,4 @@
+using Lab3Weather;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -7,23 +8,21 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lab3Weather
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+//Log.Logger = new LoggerConfiguration().ReadFrom
+//                .Configuration().CreateLogger();
 
-        // Additional configuration is required to successfully run gRPC on macOS.
-        // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog((context,services,configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+builder.Services.AddScoped<IRandomInt, RandomIntLite>();
+builder.Services.AddGrpc().AddServiceOptions<Lab3Weather.Services.AirportWeatherService>(options =>
+{
+    options.MaxReceiveMessageSize = 1024;
+    options.MaxSendMessageSize = 1024; //nastavení velikosti na 100 skonèí výjimkou
+    options.EnableDetailedErrors = true;
+});
+var app = builder.Build();
+
+app.MapGrpcService<Lab3Weather.Services.AirportWeatherService>();
+app.MapGet("/",() => "Bez klienta gRPC smula...");
+
+app.Run();
