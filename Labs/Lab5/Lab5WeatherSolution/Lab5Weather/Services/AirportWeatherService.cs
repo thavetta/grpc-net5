@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Lab4Weather.Services;
+namespace Lab5Weather.Services;
 
-public class AirportWeatherService : Lab4Weather.AirportWeather.AirportWeatherBase
+public class AirportWeatherService : Lab5Weather.AirportWeather.AirportWeatherBase
 {
     private readonly ILogger<AirportWeatherService> _logger;
     private readonly IRandomInt _random;

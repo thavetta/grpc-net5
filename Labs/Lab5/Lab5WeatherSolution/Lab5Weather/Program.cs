@@ -1,10 +1,10 @@
-using Lab4Weather.Services;
+using Lab5Weather.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
-namespace Lab4Weather
+namespace Lab5Weather
 {
     public class Program
     {
@@ -23,11 +23,12 @@ namespace Lab4Weather
                 options.MaxReceiveMessageSize = 1024;
                 options.MaxSendMessageSize = 1024; //nastavení velikosti na 100 skonèí výjimkou
                 options.EnableDetailedErrors = true;
+                options.Interceptors.Add<ServerLoggerInterceptor>();
             });
 
             var app = builder.Build();
 
-            app.MapGrpcService<Lab4Weather.Services.AirportWeatherService>();
+            app.MapGrpcService<AirportWeatherService>();
             app.MapGet("/", () => "Bez klienta gRPC smula...");
 
             app.Run();

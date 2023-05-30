@@ -1,4 +1,7 @@
-﻿namespace Lab3Weather;
+﻿using Microsoft.Extensions.Logging;
+using System;
+
+namespace Lab5Weather;
 
 public class RandomIntLite : IRandomInt
 {

@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
 
-namespace Client
+namespace Lab5Client
 {
     public class ClientLoggerInterceptor : Interceptor
     {

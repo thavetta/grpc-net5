@@ -1,4 +1,4 @@
-﻿namespace Lab3Weather;
+﻿namespace Lab5Weather;
 
 public interface IRandomInt
 {
