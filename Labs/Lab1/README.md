@@ -13,6 +13,7 @@
 ## Postup
 
 1. Ve Visual Studiu vytvořte nový projekt typu **ASP.NET Core gRPC Service**.
+1. Název projektu zvolte **Lab1Weather**, název Solution zvolte **Lab1WeatherSolution**.
 1. Zvolte nejvyšší verzi .NET, kterou chcete aby aplikace podporovala.
 1. Použití **Top-level statement** zvolte podle své priority.
 1. V projektu ve složce Proto je uložen soubor *.proto* který definuje gRPC komunikaci. Zrušte soubor **greet.proto** a vytvořte vlastní **weather.v1.proto**.
