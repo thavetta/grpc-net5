@@ -152,4 +152,85 @@
 1. Změňte v textu proto souboru namespace na **Lab2Client**
 1. Nastavte souboru weather.v2.proto vlastnosti **Build Action** na **Protobuf compiler** a dále **gRPC Stub Classes** na **Client Only**.
 1. V program.cs doplňte using pro namespace Grpc.Net.Client.
-1. V metodě Main otestujte zavolání služby pro některé letiště a vypište, co se vrátilo.
+1. Tentokrát bude kód klienta drobet sofistikovanější. Začněme výpisem obsahu informace o počasí
+
+        private static void OutputResult(WeatherReply reply, int index = 0)
+        {
+            WeatherInfo weather = index == 0 ? reply.Actual : reply.Forecast[index];
+            Console.WriteLine("Vysledek: ");
+            Console.WriteLine("Teplota: " + weather.Temperature);
+            Console.WriteLine("Tlak: " + weather.Pressure);
+
+            switch (weather.WindDirectionCase)
+            {
+                case WeatherInfo.WindDirectionOneofCase.Code:
+                    Console.WriteLine("Smer vetru: " + weather.Code);
+                    break;
+                case WeatherInfo.WindDirectionOneofCase.Degree:
+                    Console.WriteLine("Smer vetru: " + weather.Degree);
+                    break;
+            }
+
+            Console.WriteLine("Status: " + weather.Status);
+            Console.WriteLine("Varovani:");
+            foreach (var item in weather.Warnning)
+            {
+                Console.WriteLine("- " + item);
+            }
+        }
+1. Dále přidáme metodu, která provede volání, ale bude připravena použít stejnou instatnci komunikačního objektu pro víc volání.
+
+        private static GrpcChannel _channel;
+        private static AirportWeather.AirportWeatherClient _client;
+
+        private static AsyncUnaryCall<WeatherReply> CallClient(string code, bool useOld = false)
+        {
+            if (!(useOld && _channel != null))
+            {
+                _channel = GrpcChannel.ForAddress("https://localhost:5001");
+            }
+
+            if (!(useOld && _client != null))
+            {
+                _client = new Lab2Client.AirportWeather.AirportWeatherClient(_channel);
+            }
+            
+            var reply = _client.GetWeatherAsync(
+                new Lab2Client.AirportRequest { AirportCode = code });
+            return reply;
+        }
+1. V metodě Main otestujte několikanásobné zavolání služby pro některé letiště a vypište, co se vrátilo.
+
+        static async Task Main(string[] args)
+        {
+            Console.WriteLine("Ready for test");
+            Console.ReadKey();
+
+            var reply = await CallClient("BRQ");
+
+            OutputResult(reply);
+
+            reply = await CallClient("BRQ",true);
+
+            OutputResult(reply);
+            Console.WriteLine("Predpoved:");
+            OutputResult(reply, 1);
+            OutputResult(reply, 2);
+            OutputResult(reply, 3);
+            Console.WriteLine("**********************");
+
+
+            reply = await CallClient("BRQ", true);
+
+            OutputResult(reply);
+            reply = await CallClient("BRQ", true);
+
+            OutputResult(reply);
+
+            _channel.Dispose();
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+
+1. Nastavte spouštění obou projektů a otestujte funkčnost s využitím jednoho klienta a s použitím klienta pro každé volání (v CallClient nastavte parametr na false).
