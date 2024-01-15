@@ -33,6 +33,7 @@
         rpc GetWeather (WeatherRequest) returns (WeatherInfo);
         }
 1. Přidejte definici typu **WeatherRequest** a **WeatherInfo** dle zadání.
+
         // The request message
         message WeatherRequest {
             string airport_code = 1;
