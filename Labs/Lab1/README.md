@@ -26,6 +26,7 @@
         package weather.v1;
 
 1. Dál přidejte definici samotné RPC metody, kterou bude služba podporovat.
+
         // The weather service definition.
         service AirportWeather {
   
