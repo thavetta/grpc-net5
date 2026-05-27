@@ -42,7 +42,7 @@ public class AirportWeatherService : Lab4Weather.AirportWeather.AirportWeatherBa
             _logger.LogInformation("Posilam nove pocasi");
 
             await responseStream.WriteAsync(info);
-            await Task.Delay(10000);
+            await Task.Delay(10000, context.CancellationToken);
         }
 
     }
@@ -50,7 +50,7 @@ public class AirportWeatherService : Lab4Weather.AirportWeather.AirportWeatherBa
     public async override Task<SumReply> Sum(IAsyncStreamReader<NumberRequest> requestStream, ServerCallContext context)
     {
         pocitadlo = 0;
-        await foreach(var message in requestStream.ReadAllAsync())
+        await foreach(var message in requestStream.ReadAllAsync(context.CancellationToken))
         {
             _logger.LogInformation("Pridavam " + message.Number);
             pocitadlo += message.Number;
@@ -72,7 +72,7 @@ public class AirportWeatherService : Lab4Weather.AirportWeather.AirportWeatherBa
             Status = (WeatherStatus) _random.Next(0,5)
         };
         weather.Warnning.Add("First info " + DateTime.Now.Ticks);
-        weather.Warnning.Add("Second info " + +DateTime.Now.Ticks);
+        weather.Warnning.Add("Second info " + DateTime.Now.Ticks);
         return weather;
     }
 }

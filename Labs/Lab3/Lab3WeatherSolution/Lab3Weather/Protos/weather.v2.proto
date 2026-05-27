@@ -26,9 +26,9 @@ enum WeatherStatus {
 	WEATHER_STATUS_MIST = 5;
 }
 
-// The greeting service definition.
+// The weather service definition.
 service AirportWeather {
-  // Sends a greeting
+  // Sends a request for airport
   rpc GetWeather (AirportRequest) returns (WeatherReply);
 }
 
@@ -43,12 +43,12 @@ message WeatherInfo {
 	WeatherStatus status = 6;
 	repeated string warnning = 7;
 }
-// The request message containing the user's name.
+// The request message containing the airport code.
 message AirportRequest {
   string airport_code = 1;
 }
 
-// The response message containing the greetings.
+// The response message containing the weather data.
 message WeatherReply {
   WeatherInfo actual = 1;
   map<int32,WeatherInfo> forecast = 2;

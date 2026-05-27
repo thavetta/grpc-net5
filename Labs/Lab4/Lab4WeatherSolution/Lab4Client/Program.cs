@@ -47,7 +47,7 @@ namespace Lab4Client
 
             try
             {
-                await foreach(var message in call.ResponseStream.ReadAllAsync())
+                await foreach(var message in call.ResponseStream.ReadAllAsync(cts.Token))
                 {
                     Console.WriteLine("Info v case: " + DateTime.Now.TimeOfDay);
                     Console.WriteLine("Teplota " + message.Temperature);
@@ -56,6 +56,10 @@ namespace Lab4Client
             catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled)
             {
                 Console.WriteLine("Stream ukoncen");
+            }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine("Stream ukoncen klientem");
             }
         }
 
