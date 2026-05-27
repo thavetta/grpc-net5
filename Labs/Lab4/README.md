@@ -15,24 +15,24 @@
 1. Opravte v proto file namespace na Lab4Weather
 1. Přepište definici služby a metod tak, aby odpovídali zadání. Například takto:
 
-        ```proto
-        service AirportWeather {
-  
-          rpc GetWeather (AirportRequest) returns (WeatherReply);
+    ```proto
+    service AirportWeather {
 
-          rpc GetWeatherStream (AirportRequest) returns (stream WeatherInfo);
-          //Pouze pro demo streamu od klienta
-          rpc Sum (stream NumberRequest) returns (SumReply);
-        }
+        rpc GetWeather (AirportRequest) returns (WeatherReply);
 
-        message NumberRequest {
-            int32 number = 1;
-        }
+        rpc GetWeatherStream (AirportRequest) returns (stream WeatherInfo);
+        //Pouze pro demo streamu od klienta
+        rpc Sum (stream NumberRequest) returns (SumReply);
+    }
 
-        message SumReply {
-            int32 number = 1;
-        }
-        ```
+    message NumberRequest {
+        int32 number = 1;
+    }
+
+    message SumReply {
+        int32 number = 1;
+    }
+    ```
 
 1. Doplňte do třídy AirportWeatherService metodu pro vyřízení pravidelného posílání informace o počasí
 
@@ -70,57 +70,57 @@
 1. V klientské aplikaci přeneste nově upravený proto soubor
 1. Doplňte metodu které bude čekat stream dat ohledně počasí, ale tak, že po 1 minutě odběr ukončí.
 
-        ```csharp
-        private async static Task ServerStream()
+    ```csharp
+    private async static Task ServerStream()
+    {
+        var cts = new CancellationTokenSource();
+        cts.CancelAfter(TimeSpan.FromSeconds(60));
+
+        using var call = _client.GetWeatherStream(new AirportRequest() { AirportCode = "BTS" },
+            cancellationToken: cts.Token);
+
+        try
         {
-            var cts = new CancellationTokenSource();
-            cts.CancelAfter(TimeSpan.FromSeconds(60));
-
-            using var call = _client.GetWeatherStream(new AirportRequest() { AirportCode = "BTS" },
-                cancellationToken: cts.Token);
-
-            try
+            await foreach(var message in call.ResponseStream.ReadAllAsync(cts.Token))
             {
-                await foreach(var message in call.ResponseStream.ReadAllAsync(cts.Token))
-                {
-                    Console.WriteLine("Info v case: " + DateTime.Now.TimeOfDay);
-                    Console.WriteLine("Teplota " + message.Temperature);
-                }
-            }
-            catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled)
-            {
-                Console.WriteLine("Stream ukoncen");
-            }
-            catch (OperationCanceledException)
-            {
-                Console.WriteLine("Stream ukoncen klientem");
+                Console.WriteLine("Info v case: " + DateTime.Now.TimeOfDay);
+                Console.WriteLine("Teplota " + message.Temperature);
             }
         }
+        catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled)
+        {
+            Console.WriteLine("Stream ukoncen");
+        }
+        catch (OperationCanceledException)
+        {
+            Console.WriteLine("Stream ukoncen klientem");
+        }
+    }
 
-        ```
+    ```
 
 1. Jako další přidejte metodu, která postupně pošle čísla a po posledním čísle převezme výslednou sumu ze serveru.
 
-        ```csharp
-        private static async Task Sumuj()
+    ```csharp
+    private static async Task Sumuj()
+    {
+        Random random = new Random();
+        using var call = _client.Sum();
+        for (int i = 0; i < 10; i++)
         {
-            Random random = new Random();
-            using var call = _client.Sum();
-            for (int i = 0; i < 10; i++)
-            {
-                int number = random.Next(100);
-                Console.WriteLine("Posilam " + number);
-                await call.RequestStream.WriteAsync(new NumberRequest() { Number = number });
-                await Task.Delay(1500);
-
-            }
-            await call.RequestStream.CompleteAsync();
-
-            var response = await call;
-            Console.WriteLine("Soucet je " + response.Number);
+            int number = random.Next(100);
+            Console.WriteLine("Posilam " + number);
+            await call.RequestStream.WriteAsync(new NumberRequest() { Number = number });
+            await Task.Delay(1500);
 
         }
+        await call.RequestStream.CompleteAsync();
 
-        ```
+        var response = await call;
+        Console.WriteLine("Soucet je " + response.Number);
+
+    }
+
+    ```
 
 1. Zavolejte v klientovi přidané metody a otestujte oba stream režimy.
