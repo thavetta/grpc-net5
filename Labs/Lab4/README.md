@@ -36,20 +36,20 @@
 
 1. Doplňte do třídy AirportWeatherService metodu pro vyřízení pravidelného posílání informace o počasí
 
-        ```csharp
-        public override async Task GetWeatherStream(AirportRequest request, IServerStreamWriter<WeatherInfo> responseStream, ServerCallContext context)
-        {
-            while (!context.CancellationToken.IsCancellationRequested)
-            {
-                var info = GetWeatherInfo();
-                _logger.LogInformation("Posilam nove pocasi");
+```csharp
+public override async Task GetWeatherStream(AirportRequest request, IServerStreamWriter<WeatherInfo> responseStream, ServerCallContext context)
+{
+    while (!context.CancellationToken.IsCancellationRequested)
+    {
+        var info = GetWeatherInfo();
+        _logger.LogInformation("Posilam nove pocasi");
 
-                await responseStream.WriteAsync(info);
-                await Task.Delay(10000);
-            }
+        await responseStream.WriteAsync(info);
+        await Task.Delay(10000);
+    }
 
-        }
-        ```
+}
+```
 
 1. A do třídy service přidejte metodu a pomocný field pro řešení součtu čísel, které postupně pošle klient
 
