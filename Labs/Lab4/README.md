@@ -36,38 +36,36 @@
 
 1. Doplňte do třídy AirportWeatherService metodu pro vyřízení pravidelného posílání informace o počasí
 
-```csharp
-public override async Task GetWeatherStream(AirportRequest request, IServerStreamWriter<WeatherInfo> responseStream, ServerCallContext context)
-{
-    while (!context.CancellationToken.IsCancellationRequested)
+    ```csharp
+    public override async Task GetWeatherStream(AirportRequest request, IServerStreamWriter<WeatherInfo> responseStream, ServerCallContext context)
     {
-        var info = GetWeatherInfo();
-        _logger.LogInformation("Posilam nove pocasi");
+        while (!context.CancellationToken.IsCancellationRequested)
+        {
+            var info = GetWeatherInfo();
+            _logger.LogInformation("Posilam nove pocasi");
 
-        await responseStream.WriteAsync(info);
-        await Task.Delay(10000);
+            await responseStream.WriteAsync(info);
+            await Task.Delay(10000);
+        }
     }
-
-}
-```
+    ```
 
 1. A do třídy service přidejte metodu a pomocný field pro řešení součtu čísel, které postupně pošle klient
 
-        ```csharp
-        public async override Task<SumReply> Sum(IAsyncStreamReader<NumberRequest> requestStream, ServerCallContext context)
+    ```csharp
+    public async override Task<SumReply> Sum(IAsyncStreamReader<NumberRequest> requestStream, ServerCallContext context)
+    {
+        pocitadlo = 0;
+        await foreach(var message in requestStream.ReadAllAsync(context.CancellationToken))
         {
-            pocitadlo = 0;
-            await foreach(var message in requestStream.ReadAllAsync(context.CancellationToken))
-            {
-                _logger.LogInformation("Pridavam " + message.Number);
-                pocitadlo += message.Number;
-            }
-
-            return new SumReply() { Number = pocitadlo };
+            _logger.LogInformation("Pridavam " + message.Number);
+            pocitadlo += message.Number;
         }
+        return new SumReply() { Number = pocitadlo };
+    }
 
-        private int pocitadlo;
-        ```
+    private int pocitadlo;
+    ```
 
 1. V klientské aplikaci přeneste nově upravený proto soubor
 1. Doplňte metodu které bude čekat stream dat ohledně počasí, ale tak, že po 1 minutě odběr ukončí.
